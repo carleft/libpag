@@ -661,6 +661,19 @@ class ShapeLayer;
 class PAG_API PAGShapeLayer : public PAGLayer {
  public:
   PAGShapeLayer(std::shared_ptr<File> file, ShapeLayer* layer);
+
+  std::shared_ptr<Color> getTintColor() const;
+
+  void setTintColor(pag::Color value, Opacity alpha);
+
+  void clearTintColor();
+
+protected:
+    Content* getContent() override;
+    bool contentModified() const override;
+
+private:
+    LayerCache* _replacement = nullptr;
 };
 
 /**
@@ -945,6 +958,9 @@ class PAG_API PAGComposition : public PAGLayer {
    */
   std::vector<std::shared_ptr<PAGLayer>> getLayersUnderPoint(float localX, float localY);
 
+  void setTintColor(Color color, Opacity alpha);
+  void clearTintColor();
+
  protected:
   int _width = 0;
   int _height = 0;
@@ -993,6 +1009,7 @@ class PAG_API PAGComposition : public PAGLayer {
   bool getLayersUnderPointInternal(float x, float y,
                                    std::vector<std::shared_ptr<PAGLayer>>* results);
   int getLayerIndexInternal(std::shared_ptr<PAGLayer> child) const;
+  std::vector<std::shared_ptr<PAGLayer>> getAllShapeLayers();
   void doSwapLayerAt(int index1, int index2);
   void doSetLayerIndex(std::shared_ptr<PAGLayer> pagLayer, int index);
   bool doContains(PAGLayer* layer) const;

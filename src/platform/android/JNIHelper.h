@@ -34,7 +34,7 @@ using JNIEnvironment = tgfx::JNIEnvironment;
 
 jobject MakeRectFObject(JNIEnv* env, float x, float y, float width, float height);
 
-jint MakeColorInt(JNIEnv* env, uint32_t red, uint32_t green, uint32_t blue);
+jint MakeColorInt(JNIEnv* env, uint32_t red, uint32_t green, uint32_t blue, Opacity alpha = 255);
 
 jobject MakePAGFontObject(JNIEnv* env, const char* familyName, const char* fontStyle);
 

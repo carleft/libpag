@@ -51,4 +51,25 @@ bool ShapeLayer::verify() const {
 Rect ShapeLayer::getBounds() const {
   return Rect::MakeWH(containingComposition->width, containingComposition->height);
 }
+
+std::shared_ptr<Color> ShapeLayer::getTintColor() const {
+  return _tintColor;
+}
+
+void ShapeLayer::setTintColor(Color color) {
+  _tintColor = std::make_shared<pag::Color>(color);
+}
+
+void ShapeLayer::clearTintColor() {
+  _tintColor = nullptr;
+}
+
+void ShapeLayer::setTintAlpha(Opacity alpha) {
+  _alpha = alpha;
+}
+
+Opacity ShapeLayer::getTintAlpha() const {
+  return _alpha;
+}
+
 }  // namespace pag

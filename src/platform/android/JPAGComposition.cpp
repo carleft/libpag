@@ -271,4 +271,23 @@ PAG_API jobjectArray Java_org_libpag_PAGComposition_getLayersUnderPoint(JNIEnv* 
   auto layers = composition->getLayersUnderPoint(localX, localY);
   return ToPAGLayerJavaObjectList(env, layers);
 }
+
+PAG_API void Java_org_libpag_PAGComposition_setTintColor(JNIEnv* env, jobject thiz, jint color) {
+  auto composition = GetPAGComposition(env, thiz);
+  if (composition == nullptr) {
+    return;
+  }
+  pag::Color pagColor = ToColor(env, color);
+  Opacity alpha = (((color) >> 24) & 0xFF);
+  LOGI("PAGFile.setTintColor, alpha: %d, red: %d, green: %d, blue: %d", alpha, pagColor.red, pagColor.green, pagColor.blue);
+  composition->setTintColor(pagColor, alpha);
+}
+
+PAG_API void Java_org_libpag_PAGComposition_clearTintColor(JNIEnv* env, jobject thiz) {
+  auto composition = GetPAGComposition(env, thiz);
+  if (composition == nullptr) {
+    return;
+  }
+  composition->clearTintColor();
+}
 }

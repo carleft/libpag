@@ -122,6 +122,10 @@ public class PAGComposition extends PAGLayer {
      */
     public native PAGLayer[] getLayersUnderPoint(float localX, float localY);
 
+    public native void setTintColor(int color);
+
+    public native void clearTintColor();
+
     private static native void nativeInit();
 
     static {
