@@ -1946,7 +1946,7 @@ class PAG_API ShapeLayer : public Layer {
   RTTR_ENABLE(Layer)
 
   private:
-    std::shared_ptr<pag::Color> _shapeColor = nullptr;
+    std::shared_ptr<pag::Color> _tintColor = nullptr;
 };
 
 class PAG_API ImageFillRule {

@@ -53,14 +53,14 @@ Rect ShapeLayer::getBounds() const {
 }
 
 std::shared_ptr<Color> ShapeLayer::getTintColor() const {
-  return _shapeColor;
+  return _tintColor;
 }
 
 void ShapeLayer::setTintColor(Color color) {
-  _shapeColor = std::make_shared<pag::Color>(color);
+  _tintColor = std::make_shared<pag::Color>(color);
 }
 
 void ShapeLayer::clearTintColor() {
-  _shapeColor = nullptr;
+  _tintColor = nullptr;
 }
 }  // namespace pag
