@@ -47,4 +47,18 @@ void PAGShapeLayer::clearTintColor() {
     shapeLayer->clearTintColor();
 }
 
+void PAGShapeLayer::setTintAlpha(Opacity alpha) {
+    LockGuard autoLock(rootLocker);
+
+    auto shapeLayer = static_cast<ShapeLayer*>(layer);
+    shapeLayer->setTintAlpha(alpha);
+}
+
+Opacity PAGShapeLayer::getTintAlpha() {
+    LockGuard autoLock(rootLocker);
+
+    auto shapeLayer = static_cast<ShapeLayer*>(layer);
+    return shapeLayer->getTintAlpha();
+}
+
 }  // namespace pag

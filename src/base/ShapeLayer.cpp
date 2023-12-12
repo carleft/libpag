@@ -63,4 +63,13 @@ void ShapeLayer::setTintColor(Color color) {
 void ShapeLayer::clearTintColor() {
   _tintColor = nullptr;
 }
+
+void ShapeLayer::setTintAlpha(Opacity alpha) {
+  _alpha = alpha;
+}
+
+Opacity ShapeLayer::getTintAlpha() const {
+  return _alpha;
+}
+
 }  // namespace pag
