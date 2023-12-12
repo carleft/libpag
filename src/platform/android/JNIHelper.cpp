@@ -49,8 +49,8 @@ jobject MakeRectFObject(JNIEnv* env, float x, float y, float width, float height
   return env->NewObject(RectFClass.get(), RectFConstructID, x, y, x + width, y + height);
 }
 
-jint MakeColorInt(JNIEnv*, uint32_t red, uint32_t green, uint32_t blue) {
-  uint32_t color = (255 << 24) | (red << 16) | (green << 8) | (blue << 0);
+jint MakeColorInt(JNIEnv*, uint32_t red, uint32_t green, uint32_t blue, Opacity alpha) {
+  uint32_t color = (alpha << 24) | (red << 16) | (green << 8) | (blue << 0);
   return static_cast<int>(color);
 }
 

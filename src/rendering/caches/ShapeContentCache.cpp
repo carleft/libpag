@@ -34,12 +34,13 @@ void ShapeContentCache::excludeVaryingRanges(std::vector<TimeRange>* timeRanges)
 GraphicContent* ShapeContentCache::createContent(Frame layerFrame) const {
   auto shapeLayer = static_cast<ShapeLayer*>(layer);
   auto pagColor = shapeLayer->getTintColor();
+  auto alpha = shapeLayer->getTintAlpha();
 
   std::shared_ptr<Graphic> graphic;
   if (pagColor == nullptr) {
     graphic = RenderShapes(layer->uniqueID, static_cast<ShapeLayer *>(layer)->contents, layerFrame);
   } else {
-    auto tgfxColor = ToTGFX(*shapeLayer->getTintColor());
+    auto tgfxColor = ToTGFX(*pagColor, alpha);
     graphic = RenderShapes(layer->uniqueID, static_cast<ShapeLayer *>(layer)->contents, layerFrame,
                            &tgfxColor);
   };

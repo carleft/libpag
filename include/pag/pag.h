@@ -667,6 +667,10 @@ class PAG_API PAGShapeLayer : public PAGLayer {
   void setTintColor(pag::Color value);
 
   void clearTintColor();
+
+  void setTintAlpha(Opacity alpha);
+
+  Opacity getTintAlpha();
 };
 
 /**
