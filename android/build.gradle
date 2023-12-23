@@ -8,7 +8,7 @@ buildscript {
         compileSdkVersion = 33
         buildToolsVersion = '33.0.2'
         ndkVersion = '19.2.5345600'
-        minSdkVersion = 19
+        minSdkVersion = 18
         targetSdkVersion = 33
         agpVersion = '8.0.0'
         appcompatVersion = '1.4.2' // after this version, compileSdkVersion must large than 31

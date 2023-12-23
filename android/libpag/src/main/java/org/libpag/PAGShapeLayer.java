@@ -9,12 +9,6 @@ public class PAGShapeLayer extends PAGLayer {
 
     private static native void nativeInit();
 
-    public native void setTintColor(int shapeColor);
-
-    public native int getTintColor();
-
-    public native void clearTintColor();
-
     static {
         LibraryLoadUtils.loadLibrary("pag");
         nativeInit();

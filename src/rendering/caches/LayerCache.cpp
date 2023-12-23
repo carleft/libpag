@@ -34,6 +34,10 @@ LayerCache* LayerCache::Get(Layer* layer) {
   return static_cast<LayerCache*>(layer->cache);
 }
 
+LayerCache* LayerCache::GetClone(Layer* layer) {
+  return static_cast<LayerCache*>(new LayerCache(layer));
+}
+
 LayerCache::LayerCache(Layer* layer) : layer(layer) {
   switch (layer->type()) {
     case LayerType::Shape:

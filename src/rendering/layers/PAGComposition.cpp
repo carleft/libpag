@@ -351,6 +351,13 @@ void PAGComposition::FindLayers(std::function<bool(PAGLayer* pagLayer)> filterFu
   }
 }
 
+std::vector<std::shared_ptr<PAGLayer>> PAGComposition::getAllShapeLayers() {
+  std::vector<std::shared_ptr<PAGLayer>> result = getLayersBy([=](PAGLayer* pagLayer) -> bool {
+    return pagLayer->layerType() == LayerType::Shape && pagLayer->file == file;
+  });
+  return result;
+}
+
 Frame PAGComposition::childFrameToLocal(Frame childFrame, float childFrameRate) const {
   auto localFrame = PAGLayer::childFrameToLocal(childFrame, childFrameRate);
   auto compositionOffset =
@@ -506,6 +513,24 @@ std::vector<std::shared_ptr<PAGLayer>> PAGComposition::getLayersUnderPoint(float
   std::vector<std::shared_ptr<PAGLayer>> results;
   getLayersUnderPointInternal(localX, localY, &results);
   return results;
+}
+
+void PAGComposition::setTintColor(Color color, Opacity alpha) {
+    for (auto& pagLayer : getAllShapeLayers()) {
+        if (pagLayer->layerType() == LayerType::Shape) {
+            auto pagShapeLayer = std::static_pointer_cast<PAGShapeLayer>(pagLayer);
+            pagShapeLayer->setTintColor(color, alpha);
+        }
+    }
+}
+
+void PAGComposition::clearTintColor() {
+  for (auto& pagLayer : getAllShapeLayers()) {
+    if (pagLayer->layerType() == LayerType::Shape) {
+      auto pagShapeLayer = std::static_pointer_cast<PAGShapeLayer>(pagLayer);
+      pagShapeLayer->clearTintColor();
+    }
+  }
 }
 
 bool PAGComposition::GetTrackMatteLayerAtPoint(PAGLayer* childLayer, float x, float y,

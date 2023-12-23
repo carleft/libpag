@@ -29,6 +29,8 @@ class LayerCache : public Cache {
  public:
   static LayerCache* Get(Layer* layer);
 
+  static LayerCache* GetClone(Layer* layer);
+
   ~LayerCache() override;
 
   Transform* getTransform(Frame contentFrame);

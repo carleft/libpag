@@ -43,8 +43,7 @@ GraphicContent* ShapeContentCache::createContent(Frame layerFrame) const {
     auto tgfxColor = ToTGFX(*pagColor, alpha);
     graphic = RenderShapes(layer->uniqueID, static_cast<ShapeLayer *>(layer)->contents, layerFrame,
                            &tgfxColor);
-  };
-
+  }
   return new GraphicContent(graphic);
 }
 }  // namespace pag

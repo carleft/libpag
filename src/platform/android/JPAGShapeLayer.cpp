@@ -37,38 +37,4 @@ extern "C" {
 PAG_API void Java_org_libpag_PAGShapeLayer_nativeInit(JNIEnv* env, jclass clazz) {
   PAGShapeLayer_nativeContext = env->GetFieldID(clazz, "nativeContext", "J");
 }
-
-PAG_API jint Java_org_libpag_PAGShapeLayer_getTintColor(JNIEnv* env, jobject thiz) {
-  auto pagShapeLayer = GetPAGShapeLayer(env, thiz);
-  if (pagShapeLayer == nullptr) {
-      return 0;
-  }
-  auto color = pagShapeLayer->getTintColor();
-  if (color == nullptr) {
-    return 0;
-  } else {
-    return MakeColorInt(env, color->red, color->green, color->blue, pagShapeLayer->getTintAlpha());
-  }
-}
-
-
-PAG_API void Java_org_libpag_PAGShapeLayer_setTintColor(JNIEnv* env, jobject thiz, jint color) {
-  auto pagShapeLayer = GetPAGShapeLayer(env, thiz);
-  if (pagShapeLayer == nullptr) {
-    return;
-  }
-  pag::Color pagColor = ToColor(env, color);
-  Opacity alpha = (((color) >> 24) & 0xFF);
-  LOGI("PAGShapeLayer.setTintColor, alpha: %d, red: %d, green: %d, blue: %d", alpha, pagColor.red, pagColor.green, pagColor.blue);
-  pagShapeLayer->setTintColor(pagColor);
-  pagShapeLayer->setTintAlpha(alpha);
-}
-
-PAG_API void Java_org_libpag_PAGShapeLayer_clearTintColor(JNIEnv* env, jobject thiz) {
-  auto pagShapeLayer = GetPAGShapeLayer(env, thiz);
-  if (pagShapeLayer == nullptr) {
-    return;
-  }
-  pagShapeLayer->clearTintColor();
-}
 }
